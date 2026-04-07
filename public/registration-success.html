@@ -1,0 +1,223 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Registration Successful - ShopHub</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <style>
+      .success-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 80vh;
+        padding: 20px;
+      }
+
+      .success-card {
+        background: white;
+        padding: 50px;
+        border-radius: 10px;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        text-align: center;
+        max-width: 500px;
+      }
+
+      .success-icon {
+        font-size: 5rem;
+        margin-bottom: 20px;
+        animation: bounce 0.6s;
+      }
+
+      @keyframes bounce {
+        0%,
+        100% {
+          transform: scale(1);
+        }
+        50% {
+          transform: scale(1.1);
+        }
+      }
+
+      .success-card h1 {
+        color: #28a745;
+        font-size: 2rem;
+        margin-bottom: 10px;
+      }
+
+      .success-card p {
+        color: #666;
+        font-size: 1.1rem;
+        margin: 15px 0;
+        line-height: 1.6;
+      }
+
+      .user-info {
+        background: #f8f9fa;
+        padding: 20px;
+        border-radius: 8px;
+        margin: 25px 0;
+        text-align: left;
+      }
+
+      .user-info-row {
+        display: flex;
+        justify-content: space-between;
+        padding: 10px 0;
+        border-bottom: 1px solid #ddd;
+      }
+
+      .user-info-row:last-child {
+        border-bottom: none;
+      }
+
+      .user-info-label {
+        font-weight: 600;
+        color: #333;
+      }
+
+      .user-info-value {
+        color: #666;
+      }
+
+      .action-buttons {
+        display: flex;
+        gap: 15px;
+        margin-top: 30px;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      .btn {
+        padding: 12px 30px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-weight: 600;
+        font-size: 1rem;
+        text-decoration: none;
+        display: inline-block;
+        transition: all 0.3s;
+      }
+
+      .btn-primary {
+        background-color: #ff6b6b;
+        color: white;
+      }
+
+      .btn-primary:hover {
+        background-color: #ff5252;
+        transform: translateY(-2px);
+      }
+
+      .btn-secondary {
+        background-color: #4ecdc4;
+        color: white;
+      }
+
+      .btn-secondary:hover {
+        background-color: #45b8b0;
+        transform: translateY(-2px);
+      }
+
+      .countdown {
+        color: #999;
+        font-size: 0.9rem;
+        margin-top: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navigation -->
+    <nav class="navbar">
+      <div class="navbar-container">
+        <div class="logo">
+          <h1>🛍️ ShopHub</h1>
+        </div>
+        <div class="nav-links">
+          <a href="index.html" class="nav-link">Home</a>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Success Container -->
+    <div class="success-container">
+      <div class="success-card">
+        <div class="success-icon">✅</div>
+        <h1>Account Created Successfully!</h1>
+        <p>
+          Welcome to ShopHub! Your account has been created and you are now
+          registered.
+        </p>
+
+        <div class="user-info">
+          <div class="user-info-row">
+            <span class="user-info-label">Name:</span>
+            <span class="user-info-value" id="success-name">-</span>
+          </div>
+          <div class="user-info-row">
+            <span class="user-info-label">Email:</span>
+            <span class="user-info-value" id="success-email">-</span>
+          </div>
+          <div class="user-info-row">
+            <span class="user-info-label">Status:</span>
+            <span
+              class="user-info-value"
+              style="color: #28a745; font-weight: 600"
+              >Active ✓</span
+            >
+          </div>
+        </div>
+
+        <p style="color: #28a745; font-weight: 600">You are now logged in!</p>
+
+        <div class="action-buttons">
+          <a href="index.html" class="btn btn-primary">Start Shopping</a>
+          <a href="cart.html" class="btn btn-secondary">View Cart</a>
+        </div>
+
+        <div class="countdown">
+          Redirecting to home page in <span id="countdown">5</span> seconds...
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <p>&copy; 2024 ShopHub. All rights reserved.</p>
+        <p>Contact: support@shophub.com | Phone: +1-800-SHOP-HUB</p>
+      </div>
+    </footer>
+
+    <script>
+      // Get user data from URL or localStorage
+      document.addEventListener("DOMContentLoaded", () => {
+        const params = new URLSearchParams(window.location.search);
+        const name =
+          params.get("name") ||
+          localStorage.getItem("registeredName") ||
+          "User";
+        const email =
+          params.get("email") ||
+          localStorage.getItem("registeredEmail") ||
+          "user@example.com";
+
+        document.getElementById("success-name").textContent = name;
+        document.getElementById("success-email").textContent = email;
+
+        // Countdown timer
+        let count = 5;
+        const countdownEl = document.getElementById("countdown");
+        const timer = setInterval(() => {
+          count--;
+          countdownEl.textContent = count;
+          if (count === 0) {
+            clearInterval(timer);
+            window.location.href = "index.html";
+          }
+        }, 1000);
+      });
+    </script>
+  </body>
+</html>

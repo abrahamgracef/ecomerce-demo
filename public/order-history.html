@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Orders - ShopHub</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/auth.css" />
+    <style>
+      .orders-page {
+        max-width: 1100px;
+        margin: 40px auto;
+        padding: 20px;
+      }
+      .orders-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 15px;
+        margin-bottom: 30px;
+      }
+      .orders-header h1 {
+        margin: 0;
+        font-size: 2rem;
+        color: #333;
+      }
+      .order-card {
+        background: white;
+        border-radius: 12px;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+        margin-bottom: 20px;
+        overflow: hidden;
+      }
+      .order-card .order-top {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 24px 28px;
+        border-bottom: 1px solid #edf2f7;
+      }
+      .order-card .order-top div {
+        display: flex;
+        flex-direction: column;
+      }
+      .order-number {
+        font-weight: 700;
+        color: #3b49df;
+        margin-bottom: 6px;
+      }
+      .order-status {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 8px 14px;
+        border-radius: 999px;
+        font-size: 12px;
+        letter-spacing: 0.02em;
+        text-transform: uppercase;
+      }
+      .order-status.pending {
+        background: #fff5cc;
+        color: #856404;
+      }
+      .order-status.processing {
+        background: #dbeafe;
+        color: #1d4ed8;
+      }
+      .order-status.shipped {
+        background: #cff4fc;
+        color: #0c5460;
+      }
+      .order-status.delivered {
+        background: #d1f7dc;
+        color: #1e4620;
+      }
+      .order-meta {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(150px, 1fr));
+        gap: 16px;
+        padding: 24px 28px;
+        background: #f9fafb;
+      }
+      .order-meta span {
+        font-size: 0.95rem;
+        color: #4b5563;
+      }
+      .order-items {
+        padding: 24px 28px;
+      }
+      .order-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 16px 0;
+        border-bottom: 1px solid #eef2f7;
+      }
+      .order-item:last-child {
+        border-bottom: none;
+      }
+      .item-name {
+        font-weight: 600;
+        color: #111827;
+      }
+      .item-detail {
+        display: flex;
+        gap: 12px;
+        color: #6b7280;
+        font-size: 0.95rem;
+      }
+      .loading,
+      .empty-state,
+      .error-message {
+        text-align: center;
+        padding: 50px;
+        background: white;
+        border-radius: 12px;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+        color: #4b5563;
+      }
+      .error-message {
+        background: #fff1f2;
+        color: #842029;
+        border: 1px solid #f5c2c7;
+      }
+      @media (max-width: 768px) {
+        .order-meta {
+          grid-template-columns: 1fr 1fr;
+        }
+        .order-card .order-top {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 14px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="navbar">
+      <div class="navbar-container">
+        <div class="logo">
+          <h1>🛍️ ShopHub</h1>
+        </div>
+        <div class="nav-links">
+          <a href="index.html" class="nav-link">Home</a>
+          <a href="index.html#products" class="nav-link">Products</a>
+          <a href="cart.html" class="nav-link"
+            >Cart <span id="cart-count" class="cart-badge">0</span></a
+          >
+          <div class="auth-links">
+            <a
+              href="profile.html"
+              id="profile-link"
+              class="nav-link"
+              style="display: none"
+              >Profile</a
+            >
+            <a
+              href="order-history.html"
+              id="orders-link"
+              class="nav-link"
+              style="display: none"
+              >Orders</a
+            >
+            <a href="#" id="logout-link" class="nav-link" style="display: none"
+              >Logout</a
+            >
+            <a href="auth.html" id="login-link" class="nav-link">Login</a>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <main class="orders-page">
+      <div class="orders-header">
+        <div>
+          <h1>My Order History</h1>
+          <p>Review every order placed with your account.</p>
+        </div>
+      </div>
+
+      <div id="orders-container">
+        <div class="loading">Loading your orders...</div>
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <p>&copy; 2024 ShopHub. All rights reserved.</p>
+        <p>Contact: support@shophub.com | Phone: +1-800-SHOP-HUB</p>
+      </div>
+    </footer>
+
+    <script src="js/auth.js"></script>
+    <script src="js/order-history.js"></script>
+  </body>
+</html>

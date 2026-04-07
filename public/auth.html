@@ -1,0 +1,348 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login & Register - ShopHub</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/auth.css" />
+  </head>
+  <body>
+    <!-- Navigation -->
+    <nav class="navbar">
+      <div class="navbar-container">
+        <div class="logo">
+          <h1>🛍️ ShopHub</h1>
+        </div>
+        <div class="nav-links">
+          <a href="index.html" class="nav-link">Home</a>
+          <a href="index.html#products" class="nav-link">Products</a>
+          <a href="cart.html" class="nav-link"
+            >Cart <span id="cart-count" class="cart-badge">0</span></a
+          >
+          <div class="auth-links">
+            <a
+              href="profile.html"
+              id="profile-link"
+              class="nav-link"
+              style="display: none"
+              >Profile</a
+            >
+            <a
+              href="order-history.html"
+              id="orders-link"
+              class="nav-link"
+              style="display: none"
+              >Orders</a
+            >
+            <a href="#" id="logout-link" class="nav-link" style="display: none"
+              >Logout</a
+            >
+            <a href="auth.html" id="login-link" class="nav-link">Login</a>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Auth Container -->
+    <div class="auth-container">
+      <div class="auth-card">
+        <div class="auth-toggle">
+          <button class="toggle-btn active" id="login-tab">Login</button>
+          <button class="toggle-btn" id="register-tab">Register</button>
+        </div>
+
+        <!-- Login Form -->
+        <form id="login-form" class="auth-form active">
+          <h2>Welcome Back</h2>
+          <p class="form-subtitle">Sign in to your account</p>
+
+          <div class="form-group">
+            <label for="login-email">Email Address</label>
+            <input
+              type="email"
+              id="login-email"
+              placeholder="your@email.com"
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="login-password">Password</label>
+            <input
+              type="password"
+              id="login-password"
+              placeholder="Your password"
+              required
+            />
+          </div>
+
+          <button type="submit" class="btn btn-primary btn-full">
+            Sign In
+          </button>
+          <p class="form-message" id="login-message"></p>
+
+          <p class="form-link">
+            Don't have an account?
+            <a href="register.html">Register here</a>
+          </p>
+        </form>
+
+        <!-- Register Form -->
+        <form id="register-form" class="auth-form">
+          <h2>Create Account</h2>
+          <p class="form-subtitle">Join ShopHub today</p>
+
+          <div class="form-group">
+            <label for="register-name">Full Name</label>
+            <input
+              type="text"
+              id="register-name"
+              placeholder="John Doe"
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="register-email">Email Address</label>
+            <input
+              type="email"
+              id="register-email"
+              placeholder="your@email.com"
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="register-password">Password</label>
+            <input
+              type="password"
+              id="register-password"
+              placeholder="At least 6 characters"
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="confirm-password">Confirm Password</label>
+            <input
+              type="password"
+              id="confirm-password"
+              placeholder="Confirm password"
+              required
+            />
+          </div>
+
+          <button type="submit" class="btn btn-primary btn-full">
+            Create Account
+          </button>
+          <p class="form-message" id="register-message"></p>
+
+          <p class="form-link">
+            Already have an account?
+            <a href="#" id="to-login-link">Login here</a>
+          </p>
+        </form>
+      </div>
+
+      <div class="auth-image">
+        <div class="image-content">
+          <h2>Join ShopHub</h2>
+          <p>
+            Discover amazing products and enjoy a seamless shopping experience
+          </p>
+          <ul class="features-list">
+            <li>✓ Wide selection of products</li>
+            <li>✓ Secure checkout</li>
+            <li>✓ Fast delivery</li>
+            <li>✓ 24/7 customer support</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <p>&copy; 2024 ShopHub. All rights reserved.</p>
+        <p>Contact: support@shophub.com | Phone: +1-800-SHOP-HUB</p>
+      </div>
+    </footer>
+
+    <script>
+      // Tab switching functionality
+      document.addEventListener("DOMContentLoaded", function () {
+        const loginTab = document.getElementById("login-tab");
+        const registerTab = document.getElementById("register-tab");
+        const loginForm = document.getElementById("login-form");
+        const registerForm = document.getElementById("register-form");
+        const toLoginLink = document.getElementById("to-login-link");
+
+        // Tab switching
+        loginTab.addEventListener("click", function (e) {
+          e.preventDefault();
+          loginTab.classList.add("active");
+          registerTab.classList.remove("active");
+          loginForm.classList.add("active");
+          registerForm.classList.remove("active");
+        });
+
+        registerTab.addEventListener("click", function (e) {
+          e.preventDefault();
+          registerTab.classList.add("active");
+          loginTab.classList.remove("active");
+          registerForm.classList.add("active");
+          loginForm.classList.remove("active");
+        });
+
+        toLoginLink.addEventListener("click", function (e) {
+          e.preventDefault();
+          loginTab.classList.add("active");
+          registerTab.classList.remove("active");
+          loginForm.classList.add("active");
+          registerForm.classList.remove("active");
+        });
+      });
+
+      // Login form handler
+      document
+        .getElementById("login-form")
+        .addEventListener("submit", async function (e) {
+          e.preventDefault();
+
+          const email = document.getElementById("login-email").value.trim();
+          const password = document.getElementById("login-password").value;
+          const messageDiv = document.getElementById("login-message");
+
+          // Clear previous messages
+          messageDiv.textContent = "";
+          messageDiv.className = "form-message";
+
+          // Basic validation
+          if (!email || !password) {
+            messageDiv.textContent = "Email and password are required";
+            messageDiv.className = "form-message error";
+            return;
+          }
+
+          // Show loading
+          messageDiv.textContent = "Signing in...";
+          messageDiv.className = "form-message info";
+
+          try {
+            // Direct API call
+            const response = await fetch("/api/auth/login", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({ email, password }),
+            });
+
+            const data = await response.json();
+
+            if (response.ok) {
+              messageDiv.textContent = "Login successful! Redirecting...";
+              messageDiv.className = "form-message success";
+
+              // Store token and user info
+              localStorage.setItem("token", data.token);
+              localStorage.setItem("user", JSON.stringify(data.user));
+
+              // Redirect after success
+              setTimeout(() => {
+                window.location.href = "index.html";
+              }, 1000);
+            } else {
+              messageDiv.textContent = data.message || "Login failed";
+              messageDiv.className = "form-message error";
+            }
+          } catch (error) {
+            console.error("Login error:", error);
+            messageDiv.textContent = "Network error. Please try again.";
+            messageDiv.className = "form-message error";
+          }
+        });
+
+      // Registration form handler
+      document
+        .getElementById("register-form")
+        .addEventListener("submit", async function (e) {
+          e.preventDefault();
+
+          const name = document.getElementById("register-name").value.trim();
+          const email = document.getElementById("register-email").value.trim();
+          const password = document.getElementById("register-password").value;
+          const confirmPassword =
+            document.getElementById("confirm-password").value;
+          const messageDiv = document.getElementById("register-message");
+
+          // Clear previous messages
+          messageDiv.textContent = "";
+          messageDiv.className = "form-message";
+
+          // Basic validation
+          if (!name || !email || !password || !confirmPassword) {
+            messageDiv.textContent = "All fields are required";
+            messageDiv.className = "form-message error";
+            return;
+          }
+
+          if (password !== confirmPassword) {
+            messageDiv.textContent = "Passwords do not match";
+            messageDiv.className = "form-message error";
+            return;
+          }
+
+          if (password.length < 6) {
+            messageDiv.textContent = "Password must be at least 6 characters";
+            messageDiv.className = "form-message error";
+            return;
+          }
+
+          // Show loading
+          messageDiv.textContent = "Creating account...";
+          messageDiv.className = "form-message info";
+
+          try {
+            // Direct API call
+            const response = await fetch("/api/auth/register", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({ name, email, password }),
+            });
+
+            const data = await response.json();
+
+            if (response.ok) {
+              messageDiv.textContent =
+                "Registration successful! Redirecting...";
+              messageDiv.className = "form-message success";
+
+              // Store user data for success page
+              localStorage.setItem("registeredName", name);
+              localStorage.setItem("registeredEmail", email);
+
+              // Redirect after success
+              setTimeout(() => {
+                window.location.href =
+                  "registration-success.html?name=" +
+                  encodeURIComponent(name) +
+                  "&email=" +
+                  encodeURIComponent(email);
+              }, 1000);
+            } else {
+              messageDiv.textContent = data.message || "Registration failed";
+              messageDiv.className = "form-message error";
+            }
+          } catch (error) {
+            console.error("Registration error:", error);
+            messageDiv.textContent = "Network error. Please try again.";
+            messageDiv.className = "form-message error";
+          }
+        });
+    </script>
+  </body>
+</html>

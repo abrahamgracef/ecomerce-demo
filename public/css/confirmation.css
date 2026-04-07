@@ -1,0 +1,240 @@
+/* Order Confirmation Page */
+.confirmation-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 20px;
+  min-height: 60vh;
+}
+
+.confirmation-card {
+  background: white;
+  padding: 40px;
+  border-radius: 10px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+  max-width: 700px;
+  width: 100%;
+  text-align: center;
+}
+
+.success-icon {
+  display: inline-block;
+  width: 80px;
+  height: 80px;
+  background-color: var(--secondary-color);
+  color: white;
+  border-radius: 50%;
+  font-size: 3rem;
+  line-height: 80px;
+  margin-bottom: 20px;
+  animation: scaleIn 0.5s;
+}
+
+@keyframes scaleIn {
+  from {
+    transform: scale(0);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+.confirmation-card h2 {
+  font-size: 2rem;
+  color: var(--dark-color);
+  margin-bottom: 10px;
+}
+
+.order-number {
+  font-size: 1.1rem;
+  color: #666;
+  margin-bottom: 30px;
+}
+
+.order-number span {
+  font-weight: 700;
+  color: var(--primary-color);
+}
+
+/* Confirmation Details */
+.confirmation-details,
+.shipping-info,
+.next-steps {
+  text-align: left;
+  background-color: var(--light-color);
+  padding: 20px;
+  border-radius: 8px;
+  margin: 20px 0;
+}
+
+.confirmation-details h3,
+.shipping-info h3,
+.next-steps h3 {
+  color: var(--dark-color);
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+.detail-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.detail-item:last-child {
+  border-bottom: none;
+}
+
+.detail-item span:first-child {
+  font-weight: 600;
+  color: var(--text-color);
+}
+
+.status-badge {
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.status-badge.pending {
+  background-color: #fff3cd;
+  color: #856404;
+}
+
+.status-badge.processing {
+  background-color: #cfe2ff;
+  color: #084298;
+}
+
+.status-badge.shipped {
+  background-color: #d1e7dd;
+  color: #0f5132;
+}
+
+/* Order Items */
+.order-items {
+  text-align: left;
+  background-color: var(--light-color);
+  padding: 20px;
+  border-radius: 8px;
+  margin: 20px 0;
+}
+
+.order-items h3 {
+  color: var(--dark-color);
+  margin-bottom: 15px;
+}
+
+.items-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.item-row {
+  display: flex;
+  gap: 15px;
+  padding: 15px;
+  background: white;
+  border-radius: 8px;
+  align-items: center;
+}
+
+.item-row img {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 5px;
+}
+
+.item-details {
+  flex: 1;
+  text-align: left;
+}
+
+.item-details h4 {
+  margin: 0;
+  font-size: 1rem;
+  color: var(--text-color);
+}
+
+.item-details p {
+  margin: 5px 0 0;
+  color: #666;
+  font-size: 0.9rem;
+}
+
+.item-price {
+  font-weight: 700;
+  color: var(--primary-color);
+  font-size: 1.1rem;
+}
+
+/* Shipping Info */
+.shipping-info p {
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+/* Next Steps */
+.next-steps ul {
+  list-style: none;
+  text-align: left;
+}
+
+.next-steps li {
+  padding: 10px 0;
+  color: var(--text-color);
+}
+
+/* Action Buttons */
+.action-buttons {
+  display: flex;
+  gap: 15px;
+  margin-top: 30px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.action-buttons .btn {
+  flex: 1;
+  min-width: 200px;
+  padding: 12px 20px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .confirmation-card {
+    padding: 20px;
+  }
+
+  .confirmation-card h2 {
+    font-size: 1.5rem;
+  }
+
+  .success-icon {
+    width: 60px;
+    height: 60px;
+    font-size: 2rem;
+    line-height: 60px;
+  }
+
+  .item-row {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .item-details {
+    text-align: center;
+  }
+
+  .action-buttons {
+    flex-direction: column;
+  }
+
+  .action-buttons .btn {
+    min-width: 100%;
+  }
+}

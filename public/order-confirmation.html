@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Order Confirmation - ShopHub</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/confirmation.css" />
+  </head>
+  <body>
+    <!-- Navigation -->
+    <nav class="navbar">
+      <div class="navbar-container">
+        <div class="logo">
+          <h1>🛍️ ShopHub</h1>
+        </div>
+        <div class="nav-links">
+          <a href="index.html" class="nav-link">Home</a>
+          <a href="index.html#products" class="nav-link">Products</a>
+          <a href="cart.html" class="nav-link"
+            >Cart <span id="cart-count" class="cart-badge">0</span></a
+          >
+          <div class="auth-links">
+            <a href="#" id="profile-link" class="nav-link" style="display: none"
+              >Profile</a
+            >
+            <a
+              href="order-history.html"
+              id="orders-link"
+              class="nav-link"
+              style="display: none"
+              >Orders</a
+            >
+            <a href="#" id="logout-link" class="nav-link" style="display: none"
+              >Logout</a
+            >
+            <a href="auth.html" id="login-link" class="nav-link">Login</a>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Confirmation Container -->
+    <div class="container">
+      <div class="confirmation-wrapper">
+        <div class="confirmation-card">
+          <div class="success-icon">✓</div>
+          <h2>Order Placed Successfully!</h2>
+          <p class="order-number">
+            Order #: <span id="order-number">ORD-123456</span>
+          </p>
+
+          <div class="confirmation-details">
+            <h3>Order Summary</h3>
+            <div class="detail-item">
+              <span>Status:</span>
+              <span class="status-badge pending">Processing</span>
+            </div>
+            <div class="detail-item">
+              <span>Total Amount:</span>
+              <span id="order-total">$0.00</span>
+            </div>
+            <div class="detail-item">
+              <span>Order Date:</span>
+              <span id="order-date">Today</span>
+            </div>
+            <div class="detail-item">
+              <span>Estimated Delivery:</span>
+              <span>5-7 business days</span>
+            </div>
+          </div>
+
+          <div class="order-items">
+            <h3>Items Ordered</h3>
+            <div id="items-list" class="items-list">
+              <!-- Items will be loaded here -->
+            </div>
+          </div>
+
+          <div class="shipping-info">
+            <h3>Shipping Address</h3>
+            <p id="shipping-address">Loading...</p>
+          </div>
+
+          <div class="next-steps">
+            <h3>What's Next?</h3>
+            <ul>
+              <li>✓ Order confirmed and processing</li>
+              <li>📦 You'll receive tracking info via email</li>
+              <li>🚚 Expected delivery: 5-7 business days</li>
+              <li>💬 Need help? Contact support@shophub.com</li>
+            </ul>
+          </div>
+
+          <div class="action-buttons">
+            <a href="index.html" class="btn btn-secondary">Continue Shopping</a>
+            <a href="#" id="view-orders-btn" class="btn btn-primary"
+              >View My Orders</a
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <p>&copy; 2024 ShopHub. All rights reserved.</p>
+        <p>Contact: support@shophub.com | Phone: +1-800-SHOP-HUB</p>
+      </div>
+    </footer>
+
+    <script src="js/auth.js"></script>
+    <script src="js/cart.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const cart = cartManager.getCart();
+        const params = new URLSearchParams(window.location.search);
+        const orderId = params.get("orderId");
+
+        if (!orderId) {
+          window.location.href = "index.html";
+          return;
+        }
+
+        // Display order details
+        const today = new Date();
+        document.getElementById("order-date").textContent =
+          today.toLocaleDateString();
+        document.getElementById("order-total").textContent =
+          "₹" + cartManager.getTotal().toFixed(2);
+
+        // Display items
+        const itemsList = document.getElementById("items-list");
+        if (cart.length > 0) {
+          itemsList.innerHTML = cart
+            .map(
+              (item) => `
+                    <div class="item-row">
+                        <div style="width: 60px; height: 60px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 5px; display: flex; align-items: center; justify-content: center; color: white; font-size: 2rem; flex-shrink: 0;">📦</div>
+                        <div class="item-details">
+                            <h4>${item.name}</h4>
+                            <p>Qty: ${item.quantity} × ₹${item.price}</p>
+                        </div>
+                        <div class="item-price">₹${(item.price * item.quantity).toFixed(2)}</div>
+                    </div>
+                `,
+            )
+            .join("");
+        }
+
+        // View orders button
+        document
+          .getElementById("view-orders-btn")
+          .addEventListener("click", (e) => {
+            e.preventDefault();
+            if (authManager.isLoggedIn()) {
+              window.location.href = "order-history.html";
+            } else {
+              window.location.href = "auth.html";
+            }
+          });
+      });
+    </script>
+  </body>
+</html>

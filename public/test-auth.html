@@ -1,0 +1,25 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Auth Test</title>
+  </head>
+  <body>
+    <h1>Auth Manager Test</h1>
+    <div id="output"></div>
+
+    <script src="js/auth.js"></script>
+    <script>
+      setTimeout(() => {
+        const output = document.getElementById("output");
+        output.innerHTML = `
+                <p>authManager type: ${typeof authManager}</p>
+                <p>window.authManager type: ${typeof window.authManager}</p>
+                <p>authManager methods: ${authManager ? Object.getOwnPropertyNames(Object.getPrototypeOf(authManager)).join(", ") : "N/A"}</p>
+            `;
+
+        console.log("Test page - authManager:", authManager);
+        console.log("Test page - window.authManager:", window.authManager);
+      }, 100);
+    </script>
+  </body>
+</html>

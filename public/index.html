@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ShopHub - Ecommerce Store</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/products.css" />
+  </head>
+  <body>
+    <!-- Navigation -->
+    <nav class="navbar">
+      <div class="navbar-container">
+        <div class="logo">
+          <h1>🛍️ ShopHub</h1>
+        </div>
+        <div class="nav-links">
+          <a href="index.html" class="nav-link active">Home</a>
+          <a href="#products" class="nav-link">Products</a>
+          <a href="cart.html" class="nav-link"
+            >Cart <span id="cart-count" class="cart-badge">0</span></a
+          >
+          <div class="auth-links">
+            <a
+              href="profile.html"
+              id="profile-link"
+              class="nav-link"
+              style="display: none"
+              >Profile</a
+            >
+            <a
+              href="order-history.html"
+              id="orders-link"
+              class="nav-link"
+              style="display: none"
+              >Orders</a
+            >
+            <a href="#" id="logout-link" class="nav-link" style="display: none"
+              >Logout</a
+            >
+            <a href="auth.html" id="login-link" class="nav-link">Login</a>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="hero-content">
+        <h2>Welcome to ShopHub</h2>
+        <p>Discover amazing products at unbeatable prices</p>
+        <a href="#products" class="btn btn-primary">Shop Now</a>
+      </div>
+    </section>
+
+    <!-- Search and Filter Section -->
+    <section class="search-section">
+      <div class="container">
+        <input
+          type="text"
+          id="search-input"
+          class="search-box"
+          placeholder="Search products..."
+        />
+        <select id="category-filter" class="filter-select">
+          <option value="">All Categories</option>
+        </select>
+      </div>
+    </section>
+
+    <!-- Products Section -->
+    <section id="products" class="products">
+      <div class="container">
+        <h2>Featured Products</h2>
+        <div id="products-grid" class="products-grid">
+          <!-- Products will be loaded here -->
+        </div>
+        <div id="pagination" class="pagination"></div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <p>&copy; 2024 ShopHub. All rights reserved.</p>
+        <p>Contact: support@shophub.com | Phone: +1-800-SHOP-HUB</p>
+      </div>
+    </footer>
+
+    <!-- Product Modal -->
+    <div id="product-modal" class="modal">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <div id="modal-body"></div>
+      </div>
+    </div>
+
+    <script src="js/auth.js"></script>
+    <script src="js/products.js"></script>
+    <script src="js/cart.js"></script>
+  </body>
+</html>
